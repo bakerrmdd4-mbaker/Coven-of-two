@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171219">
+<title>The Coven of Two — Danielle & Christine</title>
+<style>
+:root{--gold:#c5a76b;--cream:#f1e5cf;--muted:#cdbda2;--bg:#0d0b10;--plum:#2c1c31}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% 0,#44304a 0,#19131c 38%,#09080b 100%);color:var(--cream);font-family:Georgia,"Times New Roman",serif;min-height:100vh}
+.wrap{width:min(680px,100%);margin:auto;padding:18px}.card{border:1px solid #a98a53;border-radius:24px;background:rgba(13,11,16,.74);box-shadow:0 18px 60px rgba(0,0,0,.45);padding:30px 20px;overflow:hidden;text-align:center}
+.moon{font-size:54px;color:#dfc68f}.eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#c7a967}.title{font-size:clamp(36px,10vw,58px);line-height:.98;margin:10px 0;color:#f5e8d0}.names{font-size:22px;color:#d5b878;font-style:italic}.rule{height:1px;background:linear-gradient(90deg,transparent,#b2935c,transparent);margin:22px 0}.copy{font-size:16px;line-height:1.7;color:#e2d6c1}.btn{min-height:50px;border:1px solid #b79a62;background:#302033;color:#f4e5c8;border-radius:999px;padding:12px 22px;font:inherit;cursor:pointer;margin:7px 3px}.btn:hover{background:#3c2740}.btn:focus{outline:3px solid #dec791;outline-offset:3px}.btn:disabled{opacity:.55;cursor:default}.hidden{display:none}.fade{animation:rise .6s ease both}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tarot-wrap{perspective:900px;margin:20px auto}.tarot{width:min(230px,72vw);height:320px;margin:auto;position:relative;transform-style:preserve-3d;transition:transform .8s}.tarot.flipped{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border:2px solid #b79a62;border-radius:15px;background:#181219;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px}.back{font-size:52px;background:repeating-linear-gradient(45deg,#24162b,#24162b 9px,#33203a 10px,#33203a 18px)}.front{transform:rotateY(180deg);background:radial-gradient(circle,#4b314e,#171219)}.cardicon{font-size:64px}.cardtitle{font-size:25px;color:#e3c98f;margin:8px}.tiny{font-size:12px;color:#aaa092;line-height:1.55}.potion-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px 0}.potion{font-size:48px;min-width:78px;min-height:78px;border:1px solid #765d68;background:rgba(255,255,255,.04);border-radius:16px;cursor:pointer}.result{background:rgba(239,229,209,.07);border:1px solid rgba(183,154,98,.35);border-radius:15px;padding:16px;margin-top:14px;line-height:1.6}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.choices button{min-height:78px;border:1px solid #765d68;background:rgba(255,255,255,.04);color:#eadfc9;border-radius:12px;font:inherit;cursor:pointer;padding:8px}.details{text-align:left;background:rgba(239,229,209,.07);border:1px solid rgba(183,154,98,.35);border-radius:16px;padding:17px;margin-top:16px}.d{padding:11px 0;border-bottom:1px solid rgba(183,154,98,.18)}.d:last-child{border:0}.label{display:block;text-transform:uppercase;letter-spacing:.17em;font-size:9px;color:#bca06a;margin-bottom:4px}.value{font-size:16px}.warning{font-style:italic;color:#d2c1a4;line-height:1.65;margin:18px 0}.spark{font-size:25px;letter-spacing:7px}.footer{font-size:11px;letter-spacing:.1em;color:#9f9385;margin-top:18px}
+@media(max-width:430px){.choices{grid-template-columns:1fr}.card{padding:25px 16px}.title{font-size:39px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fade{animation:none}.tarot{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap"><section class="card" aria-label="Interactive birthday invitation">
+<div id="s1"><div class="moon">☾ ✦ ☽</div><div class="eyebrow">A Secret Summons</div><h1 class="title">The Coven of Two</h1><div class="names">Danielle &amp; Christine</div><div class="rule"></div><p class="copy">Something wicked this way comes…<br><br>Two witches are gathering their coven for an evening of magic, mischief, soup and highly questionable decisions.</p><div class="spark">🕯️ 🔮 🕯️</div><button class="btn" id="summon">🕯️ Light the Candles</button></div>
+
+<div id="s2" class="hidden"><div class="eyebrow">The Cards Have Spoken</div><h2>Your Fate Awaits</h2><p class="copy">Turn over the card. The coven demands to know what kind of night this will be.</p><div class="tarot-wrap"><div class="tarot" id="tarot"><div class="face back">✦<br><span class="tiny">THE COVEN</span></div><div class="face front"><div class="cardicon">🧙‍♀️</div><div class="cardtitle">THE BIRTHDAY WITCHES</div><div class="tiny">Power · Mischief · Another Year of Not Aging</div></div></div></div><button class="btn" id="flip">🔮 Reveal the Card</button></div>
+
+<div id="s3" class="hidden"><div class="eyebrow">Choose Your Potion</div><h2>Every Witch Has a Vice</h2><p class="copy">Choose one potion. The cauldron will reveal your warning.</p><div class="potion-row"><button class="potion" data-msg="🍷 The Tipsy Seer: You will know exactly when you should stop drinking. You will ignore this prophecy.">🍷</button><button class="potion" data-msg="🟣 The Chaos Elixir: Tonight's decisions may seem questionable tomorrow. Tomorrow's decisions may seem questionable too.">🟣</button><button class="potion" data-msg="🌙 Moonwater: You are apparently the responsible one. Our condolences.">🌙</button></div><div id="potionResult" class="result hidden"></div><button class="btn hidden" id="nameBtn">🧙‍♀️ Discover Your Witch Name</button></div>
+
+<div id="s4" class="hidden"><div class="eyebrow">The Coven Must Know</div><h2>Choose Your Witch</h2><p class="copy">Which ancient power best describes you?</p><div class="choices"><button data-name="Madame Bad Influence">😈<br>Chaos</button><button data-name="The Keeper of Questionable Decisions">🔮<br>Seer</button><button data-name="The Midnight Menace">🌙<br>Night Witch</button></div><div id="nameResult" class="result hidden"></div><button class="btn hidden" id="finalBtn">📜 Reveal the Summons</button></div>
+
+<div id="s5" class="hidden"><div class="moon">☾ ✦ ☽</div><div class="eyebrow">The Prophecy Is Fulfilled</div><h2 style="font-size:30px;color:#e5c98d">YOU ARE SUMMONED</h2><p class="names">to celebrate the Birthday Witches</p><div class="rule"></div><div class="details">
+<div class="d"><span class="label">The Night</span><span class="value">Saturday, October 24, 2026</span></div>
+<div class="d"><span class="label">The Hour</span><span class="value">5:00 PM</span></div>
+<div class="d"><span class="label">The Coven's Lair</span><span class="value">1740 N Stonewall St<br>McKenzie, TN</span></div>
+<div class="d"><span class="label">Dress Code</span><span class="value">🧙‍♀️ Witches &amp; Wizards — costumes required</span></div>
+<div class="d"><span class="label">Your Offering</span><span class="value">🍲 Bring a pot of your favorite soup</span></div>
+</div><p class="warning">Witches don't age.<br>They simply become more powerful, more fabulous, and increasingly difficult to contain.</p><div class="rule"></div><div class="eyebrow">RSVP to the High Witch</div><p style="font-size:20px;color:#e2c98f">Melissa · 731-793-9054</p><p class="tiny">Come in costume. Bring your soup.<br>Leave your mortal self at the door.</p><div class="spark">🕯️ 🔮 🧙‍♀️ 🍲 🧙‍♂️ 🔮 🕯️</div><div class="footer">THE COVEN AWAITS.</div></div>
+</section></main>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+function show(id){const el=$(id);el.classList.remove('hidden');el.classList.add('fade');}
+$('#summon').addEventListener('click',()=>{show('#s2');$('#summon').disabled=true;$('#summon').textContent='✨ The candles are lit';});
+$('#flip').addEventListener('click',()=>{ $('#tarot').classList.add('flipped');$('#flip').disabled=true;$('#flip').textContent='✨ The cards have spoken';setTimeout(()=>show('#s3'),650);});
+$$('.potion').forEach(b=>b.addEventListener('click',()=>{const r=$('#potionResult');r.textContent=b.dataset.msg;r.classList.remove('hidden');show('#nameBtn');}));
+$('#nameBtn').addEventListener('click',()=>show('#s4'));
+$$('.choices button').forEach(b=>b.addEventListener('click',()=>{const r=$('#nameResult');r.innerHTML='<strong style="color:#e2c98f;font-size:20px">Your witch name:</strong><br>'+b.dataset.name;r.classList.remove('hidden');show('#finalBtn');}));
+$('#finalBtn').addEventListener('click',()=>{show('#s5');$('#s5').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});});
+})();
+</script>
+</body></html>
